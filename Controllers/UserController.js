@@ -4,4 +4,9 @@ const LoadHomePage = (req,res) => {
     res.render('HomePage')
 }
 
-module.exports = {LoadHomePage}
+const LoadComplaintArea = (req,res) => {
+    res.status(200)
+    res.render('NewComplaint')
+}
+
+module.exports = {LoadHomePage,LoadComplaintArea}

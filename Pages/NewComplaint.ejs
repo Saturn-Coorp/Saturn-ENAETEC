@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Nova Relato</title>
+</head>
+<body>
+    <div class="d-flex flex-column  align-items-center justify-content-center container " style=" margin-top: 20px; ">
+        <div class="container d-flex flex-column  bg-secondary p-3 rounded " style=" margin-top: 36px; box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.705); max-width: 400px;">
+            <h2 class="text-center">Relato</h2>
+            <form class="d-flex flex-column " action="/relatar" enctype="multipart/form-data" method="POST">
+                <input class="mt-2 mb-2" required type="file" name="image" accept="image/png, image/jpg, image/jpeg">
+                <input class="mt-2 mb-2 text-center" required type="text" name="name" placeholder="Nome">
+                <input class="mt-2 mb-2 text-center" required type="number" name="cpf" placeholder="CPF">
+                <textarea class="text-center" name="content" required cols="30" rows="10" placeholder="Descrição do relato"></textarea>
+                <button class="mt-3 btn btn-primary ">Adicionar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
