@@ -1,0 +1,32 @@
+{
+  "name": "saturn-dus",
+  "version": "1.0.0",
+  "description": "This is a sistemy to help the community , showing all the problems and complaint of works and urbanism problems , to help the city maintain the infrastructure working.",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saturn-Coorp/Saturn-DUS.git"
+  },
+  "author": "Augusto and Helyas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saturn-Coorp/Saturn-DUS/issues"
+  },
+  "homepage": "https://github.com/Saturn-Coorp/Saturn-DUS#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "cloudinary": "^1.27.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.13",
+    "multer": "^1.4.3",
+    "nodemon": "^2.0.15"
+  }
+}
