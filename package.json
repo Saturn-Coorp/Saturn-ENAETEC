@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Saturn-Coorp/Saturn-DUS#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "bcrypt-nodejs": "0.0.3",
     "cloudinary": "^1.27.1",
     "cookie-parser": "^1.4.6",
