@@ -1,3 +1,10 @@
+const cloudinary = require('../Utils/Cloudinary')
+const Complaint = require('../Models//ComplaintModel')
+const AllDistricts = require('../Controllers/Districts')
+const {complaintValidate} = require('../Controllers/ValidatingReceivedData')
+require('dotenv').config()
+// =====================================
+
 
 const LoadHomePage = (req,res) => {
     res.status(200)
@@ -6,7 +13,52 @@ const LoadHomePage = (req,res) => {
 
 const LoadComplaintArea = (req,res) => {
     res.status(200)
-    res.render('NewComplaint')
+    res.render('NewComplaint', {Districts:AllDistricts})
 }
 
-module.exports = {LoadHomePage,LoadComplaintArea}
+const AddNewComplaint = async (req,res) => {
+    // Cheking if all the inputs are complete!
+    const {error} = complaintValidate(req.body)
+
+    if(error){
+        res.status(400)
+        res.render('ErrorPage', {message:error, url:'/'})
+        // `Complete todos os campos!`
+    }else{
+        let receivedName = req.body.name.trim()
+        let receivedCpf = req.body.cpf.trim()
+        let receivedContent = req.body.content.trim()
+        let receivedDistrict = req.body.district
+        let receivedStreet = req.body.street.trim()
+        let receivedImage = req.file.path
+
+
+        try {
+            const result =  await cloudinary.uploader.upload(receivedImage)
+    
+            // Creating a new complaint
+            let complaint = {
+                name:receivedName,
+                cpf:receivedCpf,
+                district:receivedDistrict,
+                street:receivedStreet,
+                content:receivedContent,
+                image_url:result.secure_url,
+                cloudinary_id:result.public_id
+            }
+    
+            complaint = new Complaint(complaint)
+            await complaint.save()
+                
+            res.status(200)
+            res.render('SuccessPage',{message:`Relato enviado !`, url:'/'})
+        } catch (error) {
+            res.status(400)
+            res.render('ErrorPage', {message:`Erro ao salvar os dados!`, url:'/'})
+        }
+    }
+
+    
+}
+
+module.exports = {LoadHomePage,LoadComplaintArea,AddNewComplaint}

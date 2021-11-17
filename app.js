@@ -6,6 +6,7 @@ require('dotenv').config()
 // ==================================================
 // Importing Routes
 const UserRoute = require('./Routes/UserRoutes')
+const UndefinedRoute = require('./Controllers/UndefinedRoute')
 // ==================================================
 // Dotenv variables
 const PORT = process.env.PORT || 6565
@@ -15,7 +16,7 @@ const DB_KEY = process.env.DB_KEY
 // Seting the tools 
 const app = express()
 app.use(cookieParser())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended: true}))
 
 // Db connection
 mongoose.connect(DB_KEY)
@@ -31,6 +32,7 @@ app.set('views', path.join(__dirname,'Pages'))
 
 // Routes
 app.use('/',UserRoute)
+app.use('*',UndefinedRoute)
 
 
 app.listen(PORT, () => {console.log(`Server running on PORT:${PORT}`)})
