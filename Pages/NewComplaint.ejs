@@ -9,38 +9,38 @@
     <title>Relato</title>
 </head>
 <body>
-    <div class="d-flex flex-column  align-items-center justify-content-center container mt-2 mb-4">
-        <form method="POST" action="/relatar" enctype="multipart/form-data" style="background-color: rgb(82, 79, 79); color: rgb(255, 255, 255); box-shadow: 5px 10px 8px #888888;" class="p-3 rounded">
-            <div class="form-group ">
-                <label>Imagem:</label>
-                <input class="mt-2 mb-2" required  type="file" name="image" accept="image/png, image/jpg, image/jpeg">
-            </div>      
-            <div class="form-group">
-              <label>Nome: </label>
-              <input type="text" class="form-control"  name="name"  placeholder="Ex: José">
-            </div>
-            <div class="form-group">
-                <label>CPF: </label>
+    <h1 class="text-center" style=" margin-top: 50px;color: rgb(46, 45, 45);">Novo relato</h1>
+    <form method="POST" class="p-3 rounded container mb-4" action="/relatar" enctype="multipart/form-data" style="background-color: rgb(82, 79, 79); color: rgb(255, 255, 255); box-shadow: 5px 10px 8px #888888;">
+        <div class="form-group  d-flex justify-content-center">
+            <h4>Imagem: </h4>
+            <input class="ml-3 mt-2 mb-2" required  type="file" name="image" accept="image/png, image/jpg, image/jpeg">
+        </div>  
+        <div class="form-row">
+           <div class="form-group col-md-6">
+                <h5>Nome: </h5>
+                <input type="text" class="form-control"  name="name"  placeholder="Ex: José">
+          </div>    
+          <div class="form-group col-md-6">
+                <h5>CPF: </h5>
                 <input type="number" class="form-control"  required type="tel" maxlength="11" name="cpf" placeholder="Ex: 19474590236">
-            </div>
-            <div class="form-group">
-              <label>Bairro:</label>
-              <select class="form-control" name="district" required id="exampleFormControlSelect1">
-                <% Districts.forEach(district => { %>
-                    <option value="<%=district%>"><%= district %></option>
-                <% }); %> 
-              </select>
-            </div>
-            <div class="form-group">
-                <label>Rua: </label>
+          </div>
+          <div class="form-group col-md-6">
+                <h5>Rua: </h5>
                 <input type="number" class="form-control" required type="text" name="street" placeholder="Ex: Rua  2">
-            </div>
-            <div class="form-group">
-              <label>Ponto de referência e o problema:</label>
-              <textarea placeholder="Ex: Ao lado da casa numero 48, A coleta de lixo não está recolhendo tudo" class="form-control" name="content"  required  rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-info w-100 mb-2">Enviar</button>
-          </form>
-    </div >
+          </div>
+          <div class="form-group col-md-6">
+            <h5>Bairro:</h5>
+            <select class="form-control" name="district" required id="exampleFormControlSelect1">
+              <% Districts.forEach(district => { %>
+                  <option value="<%=district%>"><%= district %></option>
+              <% }); %> 
+            </select>
+        </div>
+        <div class="form-group w-100">
+            <h5>Ponto de referência e o problema:</h5>
+            <textarea placeholder="Ex: Ao lado da casa numero 48, A coleta de lixo não está recolhendo tudo" class="form-control" name="content"  required  rows="3"></textarea>
+          </div>
+        <button type="submit" class="btn btn-primary  w-100">Enviar</button>
+    </form>
 </body>
 </html>
