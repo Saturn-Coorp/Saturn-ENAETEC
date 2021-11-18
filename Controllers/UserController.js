@@ -37,7 +37,7 @@ const AddNewComplaint = async (req,res) => {
         console.log(k.length )  
         if(!receivedCpf || k.length != 11 || k == "11111111111" || k == "22222222222" || k == "33333333333" || k == "44444444444" || k == "55555555555" || k == "66666666666" || k == "77777777777" || k == "88888888888" || k == "99999999999"){
             res.status(400)
-            res.render('ErrorPage', {message:`2!`, url:'/'})
+            res.render('ErrorPage', {message:`Erro!`, url:'/'})
         }
 
         function verificationCPF(strCPF) {
