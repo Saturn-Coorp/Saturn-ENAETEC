@@ -1,5 +1,4 @@
 const express = require('express')
-const methodOverride = require('method-override')
 const router = express.Router()
 const upload = require('../Utils/Multer')
 // =====================================
@@ -8,7 +7,6 @@ const upload = require('../Utils/Multer')
 const {LoadHomePage,LoadComplaintArea,AddNewComplaint,LoadStatusComplaintPage,CheckTheComplaitStatus} = require('../Controllers/UserController')
 
 // =====================================
-router.use(methodOverride('_method'))
 
 // GET
 router.get('/',LoadHomePage)

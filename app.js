@@ -6,6 +6,7 @@ require('dotenv').config()
 // ==================================================
 // Importing Routes
 const UserRoute = require('./Routes/UserRoutes')
+const AdminRoute = require('./Routes/AdminRoutes')
 const UndefinedRoute = require('./Controllers/UndefinedRoute')
 // ==================================================
 // Dotenv variables
@@ -32,6 +33,7 @@ app.set('views', path.join(__dirname,'Pages'))
 
 // Routes
 app.use('/',UserRoute)
+app.use('/admin',AdminRoute)
 app.use('*',UndefinedRoute)
 
 
