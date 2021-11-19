@@ -3,7 +3,7 @@ const methodOverride = require('method-override')
 const router = express.Router()
 // =====================================
 // Importing controllers
-const {LoadLoginPage} = require('../Controllers/AdminController')
+const {LoadLoginPage, verifyAdminPass} = require('../Controllers/AdminController')
 
 // =====================================
 router.use(methodOverride('_method'))
@@ -12,6 +12,6 @@ router.use(methodOverride('_method'))
 router.get('/login', LoadLoginPage)
 
 // POST
-
+router.post('/login', verifyAdminPass)
 
 module.exports = router
