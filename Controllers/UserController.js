@@ -23,8 +23,8 @@ const AddNewComplaint = async (req,res) => {
     if(error){
         res.status(400)
         res.render('ErrorPage', {message:`Complete todos os campos corretamente!`, url:'/'})
-        // `Complete todos os campos!`
     }else{
+        // Receiving the ddata from user
         let receivedName = req.body.name.trim()
         let receivedCpf = req.body.cpf.trim()
         let receivedContent = req.body.content.trim()
@@ -32,10 +32,12 @@ const AddNewComplaint = async (req,res) => {
         let receivedStreet = req.body.street.trim()
         let receivedImage = req.file.path
 
+        // Validating if is a valid CPF
         let validatingCPF = verificationCPF(receivedCpf)
 
         if(validatingCPF === true){
             try {
+                // Saving the image on cloudnary
                 const result =  await cloudinary.uploader.upload(receivedImage)
         
                 // Creating a new complaint
@@ -49,6 +51,7 @@ const AddNewComplaint = async (req,res) => {
                     cloudinary_id:result.public_id
                 }
         
+                // Saving the complaint
                 complaint = new Complaint(complaint)
                 await complaint.save()
                     
