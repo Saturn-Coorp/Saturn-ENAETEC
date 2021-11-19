@@ -6,6 +6,7 @@ const complaintSchema = new mongoose.Schema({
     district:{type:String},
     street:{type:String},
     content:{type:String},
+    status:{type:String, default:'enviado'},
     image_url:{type:String},
     cloudinary_id:{type:String},
 })

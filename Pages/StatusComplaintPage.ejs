@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="https://res.cloudinary.com/ddywdmynl/image/upload/v1637195085/patch-exclamation_khfxok.svg">
+    <title>Status</title>
+</head>
+<body>
+    <div class="d-flex flex-column  align-items-center justify-content-center container " style=" margin-top: 170px; ">
+        <h2>Status da denuncia</h2>
+        <!-- Display the message -->
+        <form class="container d-flex flex-column p-3 rounded" style=" width: 400px; background-color: rgb(68, 68, 70); margin-top: 15px; box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.705);" action="/verificar" method="POST">
+            <input class="mb-3 text-center" name="code" required type="text" placeholder="Codigo">
+            <button class="btn btn-info mb-3" type="submit" >Enviar</button>
+            <a class="btn btn-info" href="/">Voltar</a>
+        </form>
+    </div>
+</body>
+</html>

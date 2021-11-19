@@ -71,10 +71,11 @@ const AddNewComplaint = async (req,res) => {
             
                     // Saving the complaint
                     complaint = new Complaint(complaint)
-                    await complaint.save()
+
+                    let complaintSaved = await complaint.save()
                         
                     res.status(200)
-                    res.render('SuccessPage',{message:`Relato enviado !`, url:'/'})
+                    res.render('SuccessPage',{message:`Relato enviado use o codigo: ${complaintSaved.id} para ver o  status! `, url:'/'})
                 } catch (error) {
                     res.status(400)
                     res.render('ErrorPage', {message:`Erro ao enviar relato !`, url:'/'})
@@ -86,9 +87,31 @@ const AddNewComplaint = async (req,res) => {
         }
     } catch (error) {
         res.status(400)
-        res.render('ErrorPage', {message:`Verifique todos os campos como imagem,nome,cpf etc! !`, url:'/relatar'})
+        res.render('ErrorPage', {message:`Verifique todos os campos como imagem,nome,cpf etc!`, url:'/relatar'})
     }
-
 }
 
-module.exports = {LoadHomePage,LoadComplaintArea,AddNewComplaint}
+// Loading the Status Page
+const LoadStatusComplaintPage = (req,res) => {
+    res.status(200)
+    res.render('StatusComplaintPage')
+}
+
+// Cheking the status
+const CheckTheComplaitStatus = async (req,res) => {
+
+    // Receiving the ID
+    let id = req.body.code
+
+    try {
+        let complaint = await Complaint.findById(id)
+
+        res.status(200)
+        res.render('SuccessPage',{message:`O Status é de : ${complaint.status} `, url:'/'})
+    } catch (error) {
+        res.status(400)
+        res.render('ErrorPage', {message:`Não foi possivel verificar status!`, url:'/verificar'})
+    }
+}
+
+module.exports = {LoadHomePage,LoadComplaintArea,AddNewComplaint,LoadStatusComplaintPage,CheckTheComplaitStatus}
