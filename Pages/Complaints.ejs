@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>News</title>
+</head>
+<body>
+    <nav style="background-color: #bfddf3;" class="sticky-top d-flex align-items-center justify-content-around p-3">
+        <h1>Denúncias</h1>
+        <button class="btn btn-info" onclick="history.back()">Voltar</button>
+    </nav>
+
+    <% if(complaints.length != 0){ %> 
+        <div class="d-flex justify-content-around flex-wrap container mt-3"> 
+            <% complaints.forEach(complaint => { %> 
+                <div style="background-color: #c9c8c8; box-shadow: 5px 7px 5px #888888; width: 300px;" class="card mb-3  d-flex flex-column p-3">
+                    <img style="max-height: 200px" src="<%= complaint.image_url %> " alt="Notice Image">
+                    <form class="d-flex  flex-column mt-2">
+                        <h2 class="text-center"><%= complaint.name %> </h2>
+                        <h5 class="text-center">Denúncia: <%= complaint.content %></h5>
+                        <h6 class="text-center mt-2">Codigo: <%= complaint.id %></h6>
+                        <a class="btn btn-secondary " href="/admin/view/<%= complaint.id %> ">Ver</a>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    <% }else{ %> 
+        <h2 style="box-shadow: 5px 7px 5px #888888;" class="container text-light  bg-dark text-center rounded w-50 p-3 mt-3">Nenhuma denúncia no momento!</h2>
+    <% } %> 
+
+</body>
+</html>

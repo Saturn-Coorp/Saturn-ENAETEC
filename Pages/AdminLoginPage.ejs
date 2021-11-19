@@ -16,12 +16,12 @@
         <div class="container d-flex flex-column p-3 rounded "
             style=" background-color: rgb(68, 68, 70); margin-top: 66px; box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.705); max-width: 400px;">
 
-            <h2 class="text-center text-danger">LOGIN</h2>
-            <form action="/admin/login" method="post">
-                <input type="password" placeholder="password" name="pass">
-                <button>Enter</button>
+            <h2 class="text-center text-light">LOGIN</h2>
+            <form action="/admin/login" class="d-flex flex-column" method="post">
+                <input class="mb-2 text-center" type="password" placeholder="Senha" name="pass">
+                <button type="submit" class="btn btn-info mb-2">Entrar</button>
+                <a class="btn btn-info mb-2" href='/'>Voltar</a>
             </form>
-            <a class="btn btn-info" href='/'>Back</a>
 
         </div>
     </div>
