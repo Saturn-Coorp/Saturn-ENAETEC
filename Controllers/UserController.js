@@ -3,7 +3,7 @@ const Complaint = require('../Models//ComplaintModel')
 const AllDistricts = require('../Controllers/Districts')
 const {complaintValidate,verificationCPF} = require('../Controllers/ValidatingReceivedData')
 require('dotenv').config()
-// =====================================*
+// =====================================
 
 
 const LoadHomePage = (req,res) => {
