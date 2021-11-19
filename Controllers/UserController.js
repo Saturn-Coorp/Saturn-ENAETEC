@@ -18,54 +18,77 @@ const LoadComplaintArea = (req,res) => {
 
 const AddNewComplaint = async (req,res) => {
     // Cheking if all the inputs are complete!
-    const {error} = complaintValidate(req.body)
+    try {
+        let inputName = req.body.name
+        let inputCpf = req.body.cpf
+        let inputContent = req.body.content
+        let inputDistrict = req.body.district
+        let inputStreet = req.body.street
+        let inputImage = req.file.path
+    
+        let dataToValidate = {
+            name: inputName,
+            cpf: inputCpf,
+            content: inputContent,
+            district: inputDistrict,
+            street: inputStreet,
+            image: inputImage
+        }
+    
+        let {error} = complaintValidate(dataToValidate)
 
-    if(error){
-        res.status(400)
-        res.render('ErrorPage', {message:`Complete todos os campos corretamente!`, url:'/'})
-    }else{
-        // Receiving the ddata from user
-        let receivedName = req.body.name.trim()
-        let receivedCpf = req.body.cpf.trim()
-        let receivedContent = req.body.content.trim()
-        let receivedDistrict = req.body.district
-        let receivedStreet = req.body.street.trim()
-        let receivedImage = req.file.path
-
-        // Validating if is a valid CPF
-        let validatingCPF = verificationCPF(receivedCpf)
-
-        if(validatingCPF === true){
-            try {
-                // Saving the image on cloudnary
-                const result =  await cloudinary.uploader.upload(receivedImage)
-        
-                // Creating a new complaint
-                let complaint = {
-                    name:receivedName,
-                    cpf:receivedCpf,
-                    district:receivedDistrict,
-                    street:receivedStreet,
-                    content:receivedContent,
-                    image_url:result.secure_url,
-                    cloudinary_id:result.public_id
-                }
-        
-                // Saving the complaint
-                complaint = new Complaint(complaint)
-                await complaint.save()
-                    
-                res.status(200)
-                res.render('SuccessPage',{message:`Relato enviado !`, url:'/'})
-            } catch (error) {
-                res.status(400)
-                res.render('ErrorPage', {message:`Erro ao enviar relato !`, url:'/'})
-            }
-        } else{
+        // Validating using Joi
+        if(error){
             res.status(400)
-            res.render('ErrorPage', {message:`Coloque um CPF valido!`, url:'/relatar'})
-        } 
+            res.render('ErrorPage', {message:error, url:'/relatar'})
+        }else{
+            // Removing all the  spaces before and after
+            let receivedName = req.body.name.trim()
+            let receivedCpf = req.body.cpf.trim()
+            let receivedContent = req.body.content.trim()
+            let receivedDistrict = req.body.district.trim()
+            let receivedStreet = req.body.street.trim()
+            let receivedImage = req.file.path.trim()
+
+            // Validating if is a valid CPF
+            let validatingCPF = verificationCPF(receivedCpf)
+
+            if(validatingCPF === true){
+                try {
+                    // Saving the image on cloudnary
+                    const result =  await cloudinary.uploader.upload(receivedImage)
+            
+                    // Creating a new complaint
+                    let complaint = {
+                        name:receivedName,
+                        cpf:receivedCpf,
+                        district:receivedDistrict,
+                        street:receivedStreet,
+                        content:receivedContent,
+                        image_url:result.secure_url,
+                        cloudinary_id:result.public_id
+                    }
+            
+                    // Saving the complaint
+                    complaint = new Complaint(complaint)
+                    await complaint.save()
+                        
+                    res.status(200)
+                    res.render('SuccessPage',{message:`Relato enviado !`, url:'/'})
+                } catch (error) {
+                    res.status(400)
+                    res.render('ErrorPage', {message:`Erro ao enviar relato !`, url:'/'})
+                }
+            } else{
+                res.status(400)
+                res.render('ErrorPage', {message:`Coloque um CPF valido!`, url:'/relatar'})
+            } 
+        }
+    } catch (error) {
+        res.status(400)
+        res.render('ErrorPage', {message:`Verifique todos os campos como imagem,nome,cpf etc! !`, url:'/relatar'})
     }
+
 }
 
 module.exports = {LoadHomePage,LoadComplaintArea,AddNewComplaint}
