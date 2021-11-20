@@ -9,7 +9,7 @@ JWT_SECRET = process.env.JWT_SECRET
 
 const LoadLoginPage = (req, res) => {
     res.status(200)
-    res.redirect('/admin/menu')
+    res.render('AdminLoginPage')
 }
 
 const LoadAdminMenu = (req,res) => {
@@ -35,11 +35,11 @@ const verifyAdminPass = async (req,res) => {
             res.render('AdminHome')
         } else {
             res.status(400)
-            res.render('ErrorPage', {message:`Senha incorreta!`, url:'/admin/menu'})
+            res.render('ErrorPage', {message:`Senha incorreta!`, url:'/admin/login'})
         }
     } catch(error) {
         res.status(400)
-        res.render('ErrorPage', {message:`Senha incorreta!`, url:'/admin/menu'})
+        res.render('ErrorPage', {message:`Senha incorreta!`, url:'/admin/login'})
     }
 }
 
