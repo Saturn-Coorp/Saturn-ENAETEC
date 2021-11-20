@@ -12,7 +12,7 @@
 ## Additional functions
 
 + Validate the CPF.
-+ Validate the data using @hapi/joi
++ Validate the data using joi
 + Is generated a code and the citizen can check the report status like the deliver services.
 ---
 ## Observations 
