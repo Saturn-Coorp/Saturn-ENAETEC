@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Ver denuncia</title>
+</head>
+<body>
+    <nav style="background-color: #bfddf3;" class="sticky-top d-flex align-items-center justify-content-around p-3">
+        <h1>Denúncia</h1>
+        <button class="btn btn-info" onclick="history.back()">Voltar</button>
+    </nav>
+
+    <div class="card mt-3">
+        <div class="card-header flex-wrap ">
+          <h2 class="text-center">Nome: <%= complaint.name %> </h2>
+          <h3 class="text-center">CPF: <%= complaint.cpf %></h3>
+        </div>
+        <img class="w-75" style=" max-width: 350px; max-height: 350px; display: block; margin-left: auto; margin-right: auto;" src="<%= complaint.image_url %>" alt="Imagem do Ocorrido">
+        <div class="card-body ">
+            <h5 class="card-title text-center">Bairro: <%= complaint.district %></h5>
+            <h6 class="text-center">Rua: <%= complaint.street %></h6>
+            <p class="card-text text-center">ocorrido: <%= complaint.content %></p>
+        </div>
+        <form class="d-flex flex-column align-items-center mb-3">
+            <% buttons.forEach(button => { %>
+                <a style="width: 300px;" href="<%= button.url %>" class="btn <%= button.btnType %> mt-2"> <%= button.message %>  </a>
+            <% }); %> 
+        </div>
+
+</body>
+</html>
