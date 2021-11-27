@@ -68,5 +68,5 @@ Sistem : [https://sistem-enatec.herokuapp.com](https://sistem-enatec.herokuapp.c
 
 <h2 align='center'>authors</h2>
 <div align='center'>
-  Made with ❤️ by <a href="https://github.com/AugustoBernardes">Augusto</a> and <a href="https://github.com/helayas">Helyas</a>
+  Made with ❤️ by <a href="https://github.com/AugustoBernardes">Augusto</a> and <a href="https://github.com/helayas">Elias</a>
 </div>
